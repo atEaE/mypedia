@@ -19,12 +19,18 @@
 📝参考URL: https://docs.aws.amazon.com/cli/latest/reference/sqs/create-queue.html
 ```sh
 # Standard Queue
-aws sqs create-queue --queue-name [queue_name] --attributes file://attributes.json
+> aws sqs create-queue --queue-name [queue_name] --attributes file://attributes.json
+{
+    "QueueUrl": "https://sqs.us-east-1.amazonaws.com/123456789/queue_name"
+}
 
 # or
 
 # FIFO Queue(Queue名のSuffixに.fifoが必要でかつ、attributesの"FifoQueue: true"を設定している必要がある。
-aws sqs create-queue --queue-name [queue_name].fifo --attributes file://attributes.json
+> aws sqs create-queue --queue-name [queue_name].fifo --attributes file://attributes.json
+{
+    "QueueUrl": "https://sqs.us-east-1.amazonaws.com/123456789/queue_name"
+}
 ```
 ```json
 // attributes.json
@@ -43,7 +49,28 @@ aws sqs create-queue --queue-name [queue_name].fifo --attributes file://attribut
 📝参考URL: https://docs.aws.amazon.com/cli/latest/reference/sqs/send-message.html
 ```sh
 # URLはQueueのURLを指定する。(下記のURLは適当なので注意)
-aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/123456789/queue_name --message-body "Hello Message"
+> aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/123456789/queue_name --message-body "Hello Message"
+{
+    "MD5OfMessageBody": "0100a8ada22077ddf8683f5e0d14da08",
+    "MessageId": "d4e98f8b-d4c4-4e5b-93b8-47247815746c"
+}
+```
+
+### 3. Messageの受信
+📝参考URL: https://docs.aws.amazon.com/cli/latest/reference/sqs/receive-message.html
+```sh
+# URLはQueueのURLを指定する。(下記のURLは適当なので注意)
+> aws sqs receive-message --queue-url https://sqs.us-east-1.amazonaws.com/123456789/queue_name
+{
+    "Messages": [
+        {
+            "MessageId": "d4e98f8b-d4c4-4e5b-93b8-47247815746c",
+            "ReceiptHandle": "AQEB4UvReNuNs0ScxtJk8u4xI5tZlpvg1fkyGzpGaJwBrI/dkbcoh00r+zEF+eW+J/thH84AWOzooawltSt58TCdYrFFWdsXANJcF4goPtnILci74JWYf9rNc5JQmjHjwDB8IIFuMGe/b/XVKvYvwB+g16GFpPt0VbcIibnfGD3+/xvCfiiRF0AQLsf8uABTPMLpb0s0Evtba56mgnn4WT8iepctemOYvkv0k0qEnJ5ECBleeCTtaV9M3Ai6k6enZWNp0hDLjJChYLgh1hefrGvEie5jMF2Ak9hE6rIfSoitMkEIT8oSp/huqsk1d8nVxIrUqEtFEoK+PjBaVvrNyBWOMnbwrGKQAKSxz00J/ZF1408SW3MoC8PK3QYtfif990T7mNwsI7okNJR3QTLnlQW2Ww==",
+            "MD5OfBody": "0100a8ada22077ddf8683f5e0d14da08",
+            "Body": "Hello Message"
+        }
+    ]
+}
 ```
 
 ## 【Q & A】

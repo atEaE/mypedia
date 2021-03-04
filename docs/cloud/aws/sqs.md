@@ -39,6 +39,12 @@ aws sqs create-queue --queue-name [queue_name].fifo --attributes file://attribut
 ```
 ※1 このプロパティの扱いが非常に面倒なので注意する。2021/4/19現在は、.fifoのSuffixがついている名前でかつ、`"FifoQueue": "true"`の状態でしか設定できない。仮に.fifoなしの名前で、true,falseに限らず、`FifoQueue`を設定すると、プロパティはないよ。と怒られる。逆に.fifoのSuffixをつけた状態で、`"FifoQueue": "false"`をつけると、名前がおかしいというエラーがでる。中々使い勝手が悪いので、今後に改善させる可能性は高い。
 
+### 2. Messageの送信
+📝参考URL: https://docs.aws.amazon.com/cli/latest/reference/sqs/send-message.html
+```sh
+# URLはQueueのURLを指定する。(下記のURLは適当なので注意)
+aws sqs send-message --queue-url https://sqs.us-east-1.amazonaws.com/123456789/queue_name --message-body "Hello Message"
+```
 
 ## 【Q & A】
 - Q: メッセージを受信後にメッセージの内容に応じて行った処理が意図せず遅延してしまい、可視性タイムアウト経過後に削除リクエストしてしまった場合は、メッセージが予期せぬタイミングで削除されてしまわないか？

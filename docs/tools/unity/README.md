@@ -1,5 +1,27 @@
 # Unity
 
+## 【Debug出力を行う】
+
+UnityでDebug Console出力の確認を行う場合、普段のコーディングで使用している`System.Console.WriteLine()`は使用できない。
+(※正確には使用はできるが、UnityUI上のConsole Windowには出力されない)
+Unityの場合は、下記のメソッドを使用する。
+```cs
+using UnityEngine;
+
+public class FirstScript : MonoBehaviour
+{
+    void Start()
+    {
+        // namespace UnityEngine 
+        Debug.Log("Hello Logging");
+    }
+}
+
+
+```
+
+
+
 ## 【UnityでVSCodeを使用する】
 
 Utnityをそのまま使用しようとすると、DefaultのEditorはVisual Studioが選択させる。  

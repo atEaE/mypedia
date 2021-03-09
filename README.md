@@ -17,22 +17,24 @@
 
 ## 【働き方】
 
-### ・[リモートワーク](docs/works/remote-work.md)
+### ・[リモートワーク](docs/works/remote-work/README.md)
 
 ## 【プログラミング言語】
 
-### ・[C#](docs/programming-language/c-sharp.md)
+### ・[C#](docs/programming-language/c-sharp/README.md)
 
-### ・[Golang](docs/programming-language/golang.md)
+### ・[Golang](docs/programming-language/golang/README.md)
 
-### ・[JavaScrip](docs/programming-language/javascript.md)
+### ・[JavaScrip](docs/programming-language/javascript/README.md)
 
-### ・[Python](docs/programming-language/python.md)
+### ・[Python](docs/programming-language/python/README.md)
 
 ## 【ツール】
 
-### ・[Git](docs/web-tools/git.md)
+### ・[Git](docs/tools/git/README.md)
+
+### ・[Unity](docs/tools/unity/README.md)
 
 ## 【Webツール】
 
-### ・[Google Analytics](docs/web-tools/google-analytics.md)
+### ・[Google Analytics](docs/web-tools/google-analytics/README.md)

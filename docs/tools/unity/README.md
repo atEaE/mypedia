@@ -5,6 +5,7 @@
 UnityでDebug Console出力の確認を行う場合、普段のコーディングで使用している`System.Console.WriteLine()`は使用できない。
 (※正確には使用はできるが、UnityUI上のConsole Windowには出力されない)
 Unityの場合は、下記のメソッドを使用する。
+
 ```cs
 using UnityEngine;
 
@@ -19,8 +20,6 @@ public class FirstScript : MonoBehaviour
 
 
 ```
-
-
 
 ## 【UnityでVSCodeを使用する】
 
@@ -64,4 +63,4 @@ Visual Studioだと、重かったり、そもそもエディタを変更する�
 
    `"omnisharp.monoPath"`には、MonoがInstallされているフォルダを選択する。ここで重要なのは、`/bin`を含んでいるフォルダをRootとして設定すること。  
    上のフォルダ場合は、`Current`ディレクトリ配下に`/bin`フォルダが存在しているので、ここを指定している。  
-   `"omnisharp.useGlobalMono"`は`always`に設定している。`autu`に設定している状態で、MonoのVersionUpをするとインテリセンスが聞かないときがあるので、個人的には`always`の設定が無難。
+   `"omnisharp.useGlobalMono"`は`always`に設定している。`auto`に設定している状態で、MonoのVersionUpをするとインテリセンスが聞かないときがあるので、個人的には`always`の設定が無難。

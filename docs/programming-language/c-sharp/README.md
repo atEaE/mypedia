@@ -1,10 +1,11 @@
 # C#(C-sharp)
 
-## [VSCodeを使用したC#の開発におすすな拡張機能]
+## 【VSCodeを使用したC#の開発におすすな拡張機能】
 
 ### [【必須】C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 
-VSCode用でC#を扱うためには必須の拡張機能。これがないとマジで何もできないので、VSCodeでC#をいじるのであれば必ず入れましょう。  
+VSCode用でC#を扱うためには必須の拡張機能。  
+これがないとマジで何もできないので、VSCodeでC#をいじるのであれば必ず入れましょう。  
 
 ### [【必須】C# XML Documentation Comments](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment)
 

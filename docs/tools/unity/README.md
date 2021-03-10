@@ -1,5 +1,12 @@
 # Unity
 
+## 【UnityにおけるC# Scriptの位置付け】
+
+UnityにおけるC# Scriptの位置付けは、Unityが提供するAPI(Object)から値を取得するための`interface`といった印象。  
+Script単体で存在するだけでは意味を持たず、対象のObjectにアタッチされることで初めて力を発揮する。  
+C# Scriptの影響範囲は基本的にアタッチされたObjectに対してであり、Objectが持っているPropertyやComponentを`Get○○`などのInterfaceを介して取得する。  
+そして、取得したComponentやObjectのPropertyに対して、**値を挿入したり**、**変更したり**することでObjectに変化をもたらしている。
+
 ## 【Debug出力を行う】
 
 UnityでDebug Console出力の確認を行う場合、普段のコーディングで使用している`System.Console.WriteLine()`は使用できない。

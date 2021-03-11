@@ -9,11 +9,73 @@ C# Scriptの影響範囲は基本的にアタッチされたObjectに対して�
 
 ## 【Objectを動かす]
 
-Gameの基本である「Objectの動き」については、いくつかの考え方がある。
+Gameの基本である「Objectの動かす」については、いくつかの考え方がある。基本的には以下の3つを覚えておく。
 
 1. Objectの座標を直接操作する。
 2. Objectの速度を操作する。
 3. Objectに外力を加える。
+
+```cs
+/*
+ * Objectの座標を直接操作する。
+ */
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    void Update()
+    {
+        // トランスフォームのボジションに対して、Vector座標を追加していく。ポイントは追加していくところで、ただ代入するだけではない。
+        // 追加していくことで、Updateが実行されるたびにPositionが、1.0f → 2.0f → 3.0fと変わるため、移動しているように見える。
+        transform.position += new Vector3(1.0f, 0, 0);
+    }
+}
+```
+
+```cs
+/*
+ * Objectの速度を操作する.
+ */
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    private Rigidbody rb;
+    void Start()
+    {
+        // 前提として、Rigitbodyのコンポーネントが付与されているObjectである必要がある。
+        rb = GetComponent<Rigidbody>();
+    }
+    void Update()
+    {
+        // UpdateがCallされるたびに”Velocity：速度”のプロパティに対して、指定方向のVectorが渡される。
+        rb.velocity = new Vector3(3f, 0, 0);
+    }
+}
+```
+
+```cs
+/*
+ * Objectの速度を操作する.
+ */
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    Rigidbody rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        // AddForceを使って、剛体(Rigitbody)に対して、外力を加えることでObjectを動かす。
+        rb.AddForce(new Vector3(10, 0, 0));
+    }
+}
+```
+
 
 ## 【Debug出力を行う】
 

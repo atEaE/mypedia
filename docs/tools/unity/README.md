@@ -7,6 +7,14 @@ Script単体で存在するだけでは意味を持たず、対象のObjectに�
 C# Scriptの影響範囲は基本的にアタッチされたObjectに対してであり、Objectが持っているPropertyやComponentを`Get○○`などのInterfaceを介して取得する。  
 そして、取得したComponentやObjectのPropertyに対して、**値を挿入したり**、**変更したり**することでObjectに変化をもたらしている。
 
+## 【Objectを動かす]
+
+Gameの基本である「Objectの動き」については、いくつかの考え方がある。
+
+1. Objectの座標を直接操作する。
+2. Objectの速度を操作する。
+3. Objectに外力を加える。
+
 ## 【Debug出力を行う】
 
 UnityでDebug Console出力の確認を行う場合、普段のコーディングで使用している`System.Console.WriteLine()`は使用できない。

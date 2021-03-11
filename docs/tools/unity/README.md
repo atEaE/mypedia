@@ -1,5 +1,18 @@
 # Unity
 
+## 【Unityのリポジトリフォルダ構造】
+
+Unityにおけるリポジトリフォルダ構成については、[Unity Learn](https://learn.unity.com/)と呼ばれるUnity Technologiesが提供している学習サイトで取り上げされている。　　
+
+Project Architecture: Unity Project Folder Structure
+<https://learn.unity.com/tutorial/project-architecture-unity-project-folder-structure?uv=4.x#>
+
+ものすごく端的にいって、リポジトリに含める必要があるのは、`Assets`と`ProjectSettings`のフォルダだけらしい。
+> You’ll find that there are quite a lot of files and folders, good news that only two folders should be kept under source control: Assets and ProjectSettings. Others are generated from these two.
+
+ただ、C#のProject的に`Packages`に記載されている依存情報も割と重要な情報なので、これも合わせて追加する。  
+(実際に、上の記事で公開されている`.gitignore`には`Packages`を除外するような記載がない。)
+
 ## 【UnityにおけるC# Scriptの位置付け】
 
 UnityにおけるC# Scriptの位置付けは、Unityが提供するAPI(Object)から値を取得するための`interface`といった印象。  

@@ -2,20 +2,56 @@
 
 ## 【UpdateとFixedUpdateの違い】
 
-UpdateとFixedUpdateは、UnityEngineとScript実行過程のLife Cycleを理解して使用しないと性能が悪くなるので注意が必要。  
-UnityのLife Cycleについては[Order of execution for event functions](https://docs.unity3d.com/Manual/ExecutionOrder.html)を参照すること。
+UpdateとFixedUpdateを理解するためにはUnityのLife Cycleとフレームについて理解しておく必要がある。  
+ここら辺を理解せずに使用すると、動きがもっさりしたり、反応しなかったりと性能が悪くなるので注意が必要。  
+UnityのLife Cycleについては[Order of execution for event functions](https://docs.unity3d.com/Manual/ExecutionOrder.html)を参照すること。  
+この2つの関数の違いについては、[公式](https://learn.unity.com/tutorial/update-and-fixedupdate#)でも取り上げられている。
 
 > ![Life Cycle](./img/unity-life-cycle.png)
 > Order of execution for event functions
 > <https://docs.unity3d.com/Manual/ExecutionOrder.html> より抜粋
 
+まず重要なのは、`Update`と`FixedUpdate`はUnity LifeCycle上で見た場合、**別のステップ**で実行されているという点。  
+`Update`は**フレームレートのイベントとして呼び出される**のに対して、`FixedUpdate`は**物理タイムスケールのイベントとして呼び出されている**。  
+これについては、下記のサンプルソースコードからも呼び出しのタイミングが違うことを確認できる。
+
+```cs
+// 3Dサンプルを使用して、EmptyGmaeObjectを作成して、それに対してAttachして確認する。
+using UnityEngine;
+
+public class UpdCheck : MonoBehaviour
+{
+    // Update is called once per frame
+    void Update()
+    {
+        Debug.Log("Updated time : " + Time.deltaTime);
+    }
+
+    // Update physics step
+    void FixedUpdate()
+    {
+        Debug.Log("FixedUpdate time : " + Time.deltaTime);
+    }
+}
+```
+
+上のコードを実行した結果は以下の通り。
+
+![Debug log](./img/debug-log-check.png)
+
+`FixedUpdate`は見ての通り、**0.02間隔で実行されている。**  
+これは物理タイムスケールの実行間隔が`0.02`に設定されているから。  
+要するに1秒あたり50回の物理情報の更新が行われるということ。
+
+これについては、Unityの[Q&Aフォーラム](https://answers.unity.com/questions/10993/whats-the-difference-between-update-and-fixedupdat.html)に詳しく説明されている。
+
 ## 【Unityでキー入力が複数回取得される現象】
 
 ## 【Unityのリポジトリフォルダ構造】
 
-Unityにおけるリポジトリフォルダ構成については、[Unity Learn](https://learn.unity.com/)と呼ばれるUnity Technologiesが提供している学習サイトで取り上げされている。　　
+リポジトリフォルダ構成については、[Unity Learn](https://learn.unity.com/)と呼ばれるUnity Technologiesが提供している学習サイトで取り上げされている。　　
 
-Project Architecture: Unity Project Folder Structure
+Project Architecture: Unity Project Folder Structure  
 <https://learn.unity.com/tutorial/project-architecture-unity-project-folder-structure?uv=4.x#>
 
 ものすごく端的にいって、リポジトリに含める必要があるのは、`Assets`と`ProjectSettings`のフォルダだけらしい。

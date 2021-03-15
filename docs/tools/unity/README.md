@@ -1,5 +1,16 @@
 # Unity
 
+## 【UpdateとFixedUpdateの違い】
+
+UpdateとFixedUpdateは、UnityEngineとScript実行過程のLife Cycleを理解して使用しないと性能が悪くなるので注意が必要。  
+UnityのLife Cycleについては[Order of execution for event functions](https://docs.unity3d.com/Manual/ExecutionOrder.html)を参照すること。
+
+> ![Life Cycle](./img/unity-life-cycle.png)
+> Order of execution for event functions
+> <https://docs.unity3d.com/Manual/ExecutionOrder.html> より抜粋
+
+## 【Unityでキー入力が複数回取得される現象】
+
 ## 【Unityのリポジトリフォルダ構造】
 
 Unityにおけるリポジトリフォルダ構成については、[Unity Learn](https://learn.unity.com/)と呼ばれるUnity Technologiesが提供している学習サイトで取り上げされている。　　

@@ -1,6 +1,6 @@
 # Golang
 
-## 【Go言語情報サイト】
+## 【Golang情報サイト】
 
 - [The Go Programming Language Specification](https://golang.org/ref/spec)  
   公式がサポートしているGoの言語仕様ドキュメント

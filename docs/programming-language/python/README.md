@@ -19,3 +19,30 @@ print(add(a="Hello", b="World", c="!!"))
 # 仮引数を指定した場合、引き渡し順は何でも良い。
 print(add(b="World", c="!!", a="Hello"))
 ```
+
+## 【with文を使用したリソースの管理】
+
+他の言語と同様に`file`などPCのリソースを消費する場合には、使用後にそのリソースを開放する必要がある。  
+リソースの開放忘れはBugに繋がりやすい部分なので、Pythonにもリソース開放を楽にするための構文`with`が用意されている。  
+
+try-finallyを使った場合
+
+```py
+file = open("./example.txt")
+try:
+    print(file.read())
+finally:
+    file.close()
+```
+
+withを使った場合
+
+```py
+with open("./example.txt") as file:
+    print(file.read())
+```
+
+## 【Python情報サイト】
+
+- [python japan](https://www.python.jp/index.html)  
+  Python japanの公式サイト.各種ドキュメントへのリンクもあるため、情報収集の足がかりとして非常に便利。

@@ -42,6 +42,11 @@ with open("./example.txt") as file:
     print(file.read())
 ```
 
+## 【withに対応したクラスを定義する】
+
+`with`文に対応したClassを生成するためには指定のメソッドをClassに対して実装しておく必要がある。  
+これについては、[with文とコンテキストマネージャ](https://docs.python.org/ja/3/reference/datamodel.html#context-managers)の章で紹介されている。　　
+
 ## 【Python情報サイト】
 
 - [python japan](https://www.python.jp/index.html)  

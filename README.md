@@ -33,6 +33,8 @@
 
 ### ・[Git](docs/tools/git/README.md)
 
+### ・[GNU Make](docs/tools/gnu-make/README.md)
+
 ### ・[Unity](docs/tools/unity/README.md)
 
 ## 【Webツール】

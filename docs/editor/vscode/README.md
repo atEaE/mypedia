@@ -1,5 +1,16 @@
 # Visual Studio Code
 
+## 【VSCodeでKey操作のContext情報を確認方法】
+
+VSCodeの拡張機能を作成する場合や、Settingsをカスタマイズする場合、Key Shortcutを変更する場合、操作したKeyのコンテキスト情報が知りたい場合がある。  
+特にKey Shortcutを作成する場合は、`"when"`枠をこまめに設定しないと、簡単にShortcutを上書きして、キーマップを潰してしまうので非常に重要。  
+Command Palletを開き、`Toggle Developer Tool`で開発者ツールをOpenする。このとき、Consoleに表示する状態にしておく。  
+また、Command Palletを開き、今度は`Developer: Inspect Context Key`を選択する。  
+すると、画像のようにカーソルで選択された箇所が赤くなるので、これでOK。  
+![inspect key](./img/inspect%20key.png)
+後は、知りたいキー操作を行うことで、ConsoleにContextが表示される。  
+![context info](./img/context%20info.png)
+
 ## 【VSCode拡張機能のAPI】
 
 VSCodeの拡張機能を作成する際に`vscode`Packageから提供されるAPIを使用して、拡張機能を作成していくことになる。

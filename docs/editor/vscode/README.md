@@ -11,6 +11,70 @@ Command Palletを開き、`Toggle Developer Tool`で開発者ツールをOpenす
 後は、知りたいキー操作を行うことで、ConsoleにContextが表示される。  
 ![context info](./img/context%20info.png)
 
+## 【VSCode拡張機能の作り方】
+
+基本的な作成方法は「[Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension)」にまとめっているのでこちらを参考にする。  
+ものすごくざっくり説明すると、最低限必要になるのは、Node.jsとGit。  
+あとは下記のコマンドを実行して、[Yeoman](https://yeoman.io/)と[VS Code Extension Generator](https://www.npmjs.com/package/generator-code)をInstallすれば準備完了。
+
+```sh
+> npm install -g yo generator-code
+```
+
+Installが完了したら、下記コマンドを実行することでテンプレートが作成される。
+
+```sh
+> yo code
+```
+
+## 【VSCode拡張機能のテスト実行】
+
+`yo code`で拡張機能を生成すると、テストも一緒に生成されるがこれが曲者。  
+Local環境で実行できたり、できなかったりとイマイチ挙動が安定しない。  
+
+```sh
+Warning: 'sandbox' is not in the list of known options, but still passed to Electron/Chromium.
+
+[main 2021-05-25T10:16:05.799Z] Running extension tests from the command line is currently only supported if no other instance of Code is running.
+
+[main 2021-05-25T10:16:05.801Z] Error: Running extension tests from the command line is currently only supported if no other instance of Code is running.
+    at Z.claimInstance (/Users/ateae/workspace/defcommand-extensions/.vscode-test/vscode-darwin-1.56.2/Visual Studio Code.app/Contents/Resources/app/out/vs/code/electron-main/main.js:59:4914)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async /Users/ateae/workspace/defcommand-extensions/.vscode-test/vscode-darwin-1.56.2/Visual Studio Code.app/Contents/Resources/app/out/vs/code/electron-main/main.js:59:1950
+    at async Z.startup (/Users/ateae/workspace/defcommand-extensions/.vscode-test/vscode-darwin-1.56.2/Visual Studio Code.app/Contents/Resources/app/out/vs/code/electron-main/main.js:59:1821)
+
+Exit code:   1
+Done
+```
+
+上のようなErrorが出力され、テストが実行されない。  
+
+> 現在、コマンドラインからの拡張機能テストの実行は、他のCodeのインスタンスが起動していない場合にのみサポートされています。
+> エラーが発生しました。現在、コマンドラインからの拡張機能テストの実行は、他のCodeのインスタンスが起動していない場合にのみサポートされています。
+
+ということらしい。ようするに他のInstanceが起動してる場合はテストが実行できない。  
+不便極まりないが、これについては[公式](https://code.visualstudio.com/api/working-with-extensions/testing-extension#tips)と[Issue#112793](https://github.com/microsoft/vscode/issues/112793#issuecomment-748987123)で取り上げられている。  
+
+具体的な解決策としては下記のようにする。
+
+```ts
+// runtest.ts
+async function main() {
+  try {
+    const extensionDevelopmentPath = path.resolve(__dirname, '../../');
+    const extensionTestsPath = path.resolve(__dirname, './suite/index');
+    
+    // ここでVersion "insiders"を指定する。
+    await runTests({ extensionDevelopmentPath, extensionTestsPath, version: 'insiders'});
+  } catch (err) {
+    console.error('Failed to run tests');
+    process.exit(1);
+  }
+}
+```
+
+`insiders`のVersionを指定することで、起動しているインスタンスと異なるインスタンスが起動するため、テストを実行できる。
+
 ## 【VSCode拡張機能のAPI】
 
 VSCodeの拡張機能を作成する際に`vscode`Packageから提供されるAPIを使用して、拡張機能を作成していくことになる。

@@ -155,7 +155,6 @@ public class FirstScript : MonoBehaviour
     }
 }
 
-
 ```
 
 ## 【UnityでVSCodeを使用する】
